@@ -16,26 +16,26 @@ class _Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _title(),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
                   _subtitle(),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   _emoji(),
                 ],
               ),
             ],
           ),
         ),
-        SizedBox(width: kDefaultSpacing),
+        const SizedBox(width: kDefaultSpacing),
         SearchButton(onPressed: () {}),
       ],
     );
   }
 
   Widget _title() {
-    return Text(
-      "Good Morning",
+    return const Text(
+      "Hi There",
       style: TextStyle(fontSize: 20),
     );
   }
@@ -45,7 +45,7 @@ class _Header extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: _maxWidthForUsername),
       child: Text(
         user.name.capitalizeFirst!,
-        style: TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 20),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),

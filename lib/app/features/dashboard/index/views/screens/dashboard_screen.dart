@@ -27,7 +27,7 @@ class DashboardScreen extends GetView<DashboardController> {
       body: PageView(
         controller: controller.page,
         onPageChanged: (index) => controller.onChangedPage(index),
-        children: [
+        children: const [
           HomeScreen(),
           CloudScreen(),
         ],

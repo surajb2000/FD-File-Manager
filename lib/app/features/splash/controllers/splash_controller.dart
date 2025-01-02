@@ -7,17 +7,16 @@ class SplashController extends GetxController {
   void onInit() async {
     super.onInit();
 
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
     goToDashboard();
   }
 
-  static const _url =
-      "https://www.youtube.com/channel/UCvD_LJniZfhF6ELHFhB1fPw";
+  static final Uri _url = Uri.parse("https://www.youtube.com/channel/UCvD_LJniZfhF6ELHFhB1fPw");
 
   void goToDashboard() => Get.offNamed(Routes.dashboard);
 
-  void goToYoutubeChannel() async => await canLaunch(_url)
-      ? await launch(_url)
+  void goToYoutubeChannel() async => await canLaunchUrl(_url)
+      ? await launchUrl(_url)
       : throw 'Could not launch $_url';
 }

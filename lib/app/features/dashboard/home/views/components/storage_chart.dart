@@ -2,12 +2,15 @@ part of home;
 
 class _StorageChart extends StatelessWidget {
   const _StorageChart({
-    required this.usage,
+    required this.totalFree,
+    required this.totalUsed,
     this.radius = 200,
     Key? key,
   }) : super(key: key);
 
-  final _Usage usage;
+  final int totalFree;
+  final int totalUsed;
+  
   final double radius;
 
   @override
@@ -32,17 +35,17 @@ class _StorageChart extends StatelessWidget {
           backgroundColor: Colors.grey[300]!,
         ),
 
-        SizedBox(height: kDefaultSpacing),
+        const SizedBox(height: kDefaultSpacing),
 
-        // usage information
         Row(
           children: [
-            Spacer(),
+            const Spacer(),
             Flexible(
               flex: 4,
               child: _indicatorUsage(
                 color: Colors.grey[300]!,
-                title: filesize(usage.totalFree, 0),
+                // title: filesize(totalFree, 0),
+                title: "${totalFree ~/ 1024} GB",
                 subtitle: "free",
               ),
             ),
@@ -50,11 +53,12 @@ class _StorageChart extends StatelessWidget {
               flex: 4,
               child: _indicatorUsage(
                 color: Theme.of(context).primaryColor,
-                title: filesize(usage.totalUsed, 0),
+                // title: filesize(totalUsed, 0),
+                title: "${totalUsed ~/ 1024} GB",
                 subtitle: "used",
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         )
       ],
@@ -85,13 +89,14 @@ class _StorageChart extends StatelessWidget {
           backgroundColor: color,
           radius: 8,
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(height: 5),
-            Text(subtitle, style: Theme.of(Get.context!).textTheme.caption),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5),
+            // Text(subtitle, style: Theme.of(Get.context!).textTheme.caption),
+            Text(subtitle, style: Theme.of(Get.context!).textTheme.bodySmall),
           ],
         )
       ],
@@ -101,12 +106,13 @@ class _StorageChart extends StatelessWidget {
   Widget _subtitleText(String text) {
     return Text(
       text,
-      style: Theme.of(Get.context!).textTheme.caption?.copyWith(fontSize: 14),
+      // style: Theme.of(Get.context!).textTheme.caption?.copyWith(fontSize: 14),
+      style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(fontSize: 14),
     );
   }
 
   double getUsedPercent() {
-    int _maxStorage = usage.totalFree + usage.totalUsed;
-    return (usage.totalUsed / _maxStorage) * 100;
+    int maxStorage = totalFree + totalUsed;
+    return (totalUsed / maxStorage) * 100;
   }
 }

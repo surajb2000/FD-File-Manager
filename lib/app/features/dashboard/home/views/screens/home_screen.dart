@@ -1,5 +1,9 @@
 library home;
 
+// import 'dart:io';
+
+// import 'package:path_provider/path_provider.dart';
+import 'package:disk_space_plus/disk_space_plus.dart';
 import 'package:file_manager/app/constans/app_constants.dart';
 import 'package:file_manager/app/shared_components/custom_button.dart';
 import 'package:file_manager/app/shared_components/file_list_button.dart';
@@ -35,7 +39,7 @@ class HomeScreen extends GetView<HomeController> {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverFillRemaining(
               child: Column(children: [
@@ -45,20 +49,22 @@ class HomeScreen extends GetView<HomeController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(kDefaultSpacing),
-                  child: _StorageChart(usage: controller.usage),
+                  child: _StorageChart(
+                    totalFree: controller.totalFree.value,
+                    totalUsed: controller.totalUsed.value,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(kDefaultSpacing),
                   child: _Category(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(kDefaultSpacing),
-                  child: _Recent(
-                    data: controller.recent,
-                  ),
-                ),
+                // Padding( //TODO
+                //   padding: const EdgeInsets.all(kDefaultSpacing),
+                //   child: _Recent(
+                //     data: controller.recent,
+                //   ),
+                // ),
               ]),
-              hasScrollBody: false,
             )
           ],
         ),

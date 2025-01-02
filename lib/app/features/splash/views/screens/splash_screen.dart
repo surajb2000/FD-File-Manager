@@ -22,26 +22,26 @@ class SplashScreen extends GetView<SplashController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Spacer(flex: 2),
+            const Spacer(flex: 2),
             Image.asset(ImageRaster.logo, height: 150),
-            Spacer(flex: 1),
+            const Spacer(flex: 1),
             Obx(
               () => Visibility(
-                  child: CircularProgressIndicator(),
-                  visible: controller.isLoading.value),
+                  visible: controller.isLoading.value,
+                  child: const CircularProgressIndicator()),
             ),
-            Spacer(flex: 1),
+            const Spacer(flex: 1),
             ListTile(
-              leading: Image.asset(ImageRaster.youtube, height: 70),
+              leading: Image.asset(ImageRaster.logo, height: 70),
               title: Text(
-                "Flutter With Gia",
-                style: Theme.of(context).textTheme.subtitle1,
+                "FD File Explorer",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               subtitle: Text(
-                "Get More Tutorial",
-                style: Theme.of(context).textTheme.caption,
+                "Get More Out of Your Storage",
+                style: Theme.of(context).textTheme.bodySmall,
               ),
-              onTap: () => controller.goToYoutubeChannel(),
+              // onTap: () => controller.goToYoutubeChannel(),
             )
           ],
         ),
